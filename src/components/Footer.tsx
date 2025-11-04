@@ -20,7 +20,7 @@ export function Footer() {
               PADI-certified scuba diving training and certification in Raleigh, NC with over 42 years of experience.
             </p>
             <div className="flex" style={{ gap: '12px' }}>
-              <a href="#" className="rounded-full bg-slate-800 hover:bg-cyan-600 flex items-center justify-center transition-colors" style={{ width: '40px', height: '40px' }}>
+              {/* <a href="#" className="rounded-full bg-slate-800 hover:bg-cyan-600 flex items-center justify-center transition-colors" style={{ width: '40px', height: '40px' }}>
                 <Facebook style={{ width: '20px', height: '20px' }} />
               </a>
               <a href="#" className="rounded-full bg-slate-800 hover:bg-cyan-600 flex items-center justify-center transition-colors" style={{ width: '40px', height: '40px' }}>
@@ -28,7 +28,7 @@ export function Footer() {
               </a>
               <a href="#" className="rounded-full bg-slate-800 hover:bg-cyan-600 flex items-center justify-center transition-colors" style={{ width: '40px', height: '40px' }}>
                 <Twitter style={{ width: '20px', height: '20px' }} />
-              </a>
+              </a> */}
             </div>
           </div>
 

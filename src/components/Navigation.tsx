@@ -45,12 +45,9 @@ export function Navigation() {
             <img
               src={logo}
               alt="By The Shore Logo"
+              style={{ height: "80px", width: "auto", transition: "all 0.3s ease" }}
               className={[
-                "h-10 w-auto transition-all duration-300",
-                // On top over hero: add shadow to white logo
                 !scrolled ? "drop-shadow-[0_1px_6px_rgba(0,0,0,0.6)]" : "",
-                // On solid blue: keep logo white (NO invert)
-                scrolled ? "" : ""
               ].join(" ")}
             />
           </a>

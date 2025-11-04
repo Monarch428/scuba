@@ -149,14 +149,14 @@ export function FeaturedTrips() {
           className="text-center"
           style={{ marginTop: '48px' }}
         >
-          <Button 
+          {/* <Button 
             onClick={scrollToForm}
             className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 border-0 text-white shadow-2xl"
             style={{ height: '48px', fontSize: '16px', fontWeight: 600, paddingLeft: '32px', paddingRight: '32px' }}
           >
             View All Dive Trips
             <ArrowRight className="ml-2" style={{ width: '18px', height: '18px' }} />
-          </Button>
+          </Button> */}
         </motion.div>
       </div>
     </section>

@@ -1,1 +1,4 @@
 node_modules
+build
+storage/enquiries.xml
+storage/*.xml

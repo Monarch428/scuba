@@ -16,11 +16,40 @@ export function ContactForm({ variant = 'hero' }: ContactFormProps) {
     phone: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success('Thank you! We\'ll be in touch soon.');
-    setFormData({ name: '', email: '', phone: '', message: '' });
+    if (isSubmitting) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(import.meta.env.VITE_CONTACT_ENDPOINT || '/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || data.success === false) {
+        const errorMessage = data.error || 'Unable to send your enquiry right now. Please try again later.';
+        throw new Error(errorMessage);
+      }
+
+      toast.success("Thank you! We've sent a confirmation to your inbox.");
+      setFormData({ name: '', email: '', phone: '', message: '' });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unable to send your enquiry right now.';
+      toast.error(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -122,12 +151,13 @@ export function ContactForm({ variant = 'hero' }: ContactFormProps) {
       </div>
 
       {/* Button: Reduced from 56px to 48px height */}
-      <Button 
+      <Button
         type="submit"
-        className={`w-full ${isDark ? 'bg-white text-blue-600 hover:bg-blue-50' : 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white'}`}
+        disabled={isSubmitting}
+        className={`w-full ${isDark ? 'bg-white text-blue-600 hover:bg-blue-50' : 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white'} ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}`}
         style={{ height: '48px', fontSize: '16px', fontWeight: 600 }}
       >
-        Send Enquiry
+        {isSubmitting ? 'Sending…' : 'Send Enquiry'}
       </Button>
     </form>
   );
